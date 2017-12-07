@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,  AppRegistry, Button, TextInput } from 'react-native';
+import { ScrollView, StyleSheet, Text, View,  AppRegistry, Button, TextInput, Image } from 'react-native';
 import email from 'react-native-email';
+
+import AddComment from './AddComment';
+import CommentList from './CommentList';
+import ColorPhonePicker  from './ColorPhonePicker';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: 'Give body email' };
+    this.state = { text: 'Mail body: ' + this.props.phoneName,
+                  name: ''};
   }
 
   handleEmail = (text) => {
@@ -20,7 +25,7 @@ class Profile extends Component {
 
   render() {
     return (
-      <View>
+      <ScrollView /*accessible={true}*/>
         <Text>{this.props.phoneName}</Text>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
@@ -28,7 +33,14 @@ class Profile extends Component {
           value={this.state.text}
         />
         <Button title="Send Mail" onPress={() => this.handleEmail(this.state.text)} />
-      </View>
+        <Image
+        style={{width: 150, height: 150, marginLeft: 100}}
+        source={this.props.image}
+        />
+        <ColorPhonePicker />
+        <AddComment phoneId={this.props.phoneId} commList={this.props.commList} />
+        <CommentList phoneId={this.props.phoneId} commList={this.props.commList} />
+      </ScrollView>
     );
   }
 }

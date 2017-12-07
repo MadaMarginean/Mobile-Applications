@@ -3,6 +3,7 @@ import { Router, Scene } from 'react-native-router-flux';
 
 import Home from './Home';
 import Profile from './Profile';
+import AddComment from './AddComment';
 
 const App = () => {
   return (
@@ -16,6 +17,11 @@ const App = () => {
           key="profile"
           component={Profile}
           title="Phone Specification"
+        />
+        <Scene
+          key="update"
+          component={AddComment}
+          title="Update Comment"
         />
       </Scene>
     </Router>
