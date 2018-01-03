@@ -11,6 +11,7 @@ import { Actions } from 'react-native-router-flux';
 import s5img from './assets/Samsung_Galaxy_S5.png';
 import s6img from './assets/Samsung_Galaxy_S6_S6_Edge_and_S6_Edge_Plus.png';
 import s7img from './assets/Samsung_Galaxy_S7_and_S7_Edge.png';
+import Chart from './Chart';
 
 class Home extends Component {
   state = {
@@ -50,6 +51,7 @@ class Home extends Component {
               <Text>{item.name}</Text>
             </TouchableOpacity>
           ))}
+          <Chart />
       </View>
     );
   }
