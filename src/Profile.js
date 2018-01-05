@@ -5,6 +5,9 @@ import email from 'react-native-email';
 import AddComment from './AddComment';
 import CommentList from './CommentList';
 import ColorPhonePicker  from './ColorPhonePicker';
+import { Actions } from 'react-native-router-flux';
+
+import * as firebase from 'firebase';
 
 class Profile extends Component {
   constructor(props) {
@@ -23,7 +26,50 @@ class Profile extends Component {
     }).catch(console.error)
   }
 
+  deletePhone() {
+    let mobilePath = "/Phone";
+    let data = firebase.database().ref(mobilePath);
+
+    Actions.home({user: 'business'});
+
+    data.on('value', (item) => {
+                let phones = item.val(); //bd
+                let keys = Object.keys(phones);
+                var items = [];
+
+                for(var i = 0; i< keys.length; i++) {
+                  var k = keys[i];
+
+                  if (phones[k].name === this.props.phoneName) {
+                    firebase.database().ref(mobilePath).child(k).remove();
+                  }
+                }
+              });
+  }
+
+  updatePhone() {
+    let mobilePath = "/Phone";
+    let data = firebase.database().ref(mobilePath);
+
+    Actions.addNewPhone();
+
+    data.on('value', (item) => {
+                let phones = item.val(); //bd
+                let keys = Object.keys(phones);
+                var items = [];
+
+                for(var i = 0; i< keys.length; i++) {
+                  var k = keys[i];
+
+                  if (phones[k].name === this.props.phoneName) {
+                    firebase.database().ref(mobilePath).child(k).remove();
+                  }
+                }
+              });
+  }
+
   render() {
+    console.log(this.props.user);
     return (
       <ScrollView /*accessible={true}*/>
         <Text>{this.props.phoneName}</Text>
@@ -38,6 +84,13 @@ class Profile extends Component {
         source={this.props.image}
         />
         <ColorPhonePicker />
+        {this.props.user === 'business' ?
+          <View>
+            <Button title="Delete Phone" onPress={() => this.deletePhone()} />
+            <Button title="Update Phone" onPress={() => this.updatePhone()} />
+          </View> :
+          null
+        }
         <AddComment phoneId={this.props.phoneId} commList={this.props.commList} />
         <CommentList phoneId={this.props.phoneId} commList={this.props.commList} />
       </ScrollView>

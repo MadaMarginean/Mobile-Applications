@@ -9,6 +9,7 @@ import AddComment from './AddComment';
 import Login from './Login';
 import Chart from './Chart';
 import SpecialPackages from './SpecialPackages';
+import AddNewPhone from './AddNewPhone';
 
 class App extends Component {
   componentWillMount() {
@@ -55,6 +56,11 @@ class App extends Component {
             key="business"
             component={SpecialPackages}
             title="Special Packages"
+          />
+          <Scene
+            key="addNewPhone"
+            component={AddNewPhone}
+            title="Add a new Phone"
           />
         </Scene>
       </Router>

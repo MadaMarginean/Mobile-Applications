@@ -64,7 +64,7 @@ class Home extends Component {
   }
 
   goPhone = (name, id, list, image) => {
-    Actions.profile({phoneId: id, phoneName: name, commList: list, image: image});
+    Actions.profile({phoneId: id, phoneName: name, commList: list, image: image, user: this.props.user});
   }
 
   goToChart = () => {
@@ -74,7 +74,11 @@ class Home extends Component {
   goToSpecialPackages = () => {
     Actions.business();
   }
-   
+
+  addItem = () => {
+    Actions.addNewPhone();
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -86,16 +90,23 @@ class Home extends Component {
           </TouchableOpacity>
         ))}
         <TouchableOpacity
-          style={styles.button}
+          style={styles.buttonChart}
           onPress={() => this.goToChart()}>
           <Text>See chart</Text>
         </TouchableOpacity>
         {this.props.user === 'business' ?
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.goToSpecialPackages()}>
-              <Text>Special Packages</Text>
-            </TouchableOpacity> : null
+          <View>
+            <TouchableOpacity
+              style={styles.buttonAdd}
+              onPress={() => this.addItem()}>
+                <Text>Add</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonSpecial}
+              onPress={() => this.goToSpecialPackages()}>
+                <Text>Special Packages</Text>
+            </TouchableOpacity>
+          </View> : null
         }
       </View>
     );
@@ -113,13 +124,31 @@ var styles = StyleSheet.create({
   text: {
     fontSize: 32,
   },
-  button: {
+  buttonChart: {
     backgroundColor: 'gold',
-    paddingTop: 15,
+    paddingTop: 25,
     paddingBottom: 15,
     width: 150,
     marginTop: 100
-  }
+  },
+  buttonSpecial: {
+    backgroundColor: 'orange',
+    paddingTop: 25,
+    paddingBottom: 15,
+    width: 150,
+    marginTop: 100,
+    marginLeft: 180
+  },
+  buttonAdd: {
+    backgroundColor: 'grey',
+    paddingTop: 15,
+    paddingBottom: 15,
+    width: 50,
+    marginTop: -170,
+    marginLeft: 230,
+    textAlign: 'center',
+    fontSize: 50
+  },
 });
 
 export default Home;
