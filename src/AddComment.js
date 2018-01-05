@@ -67,11 +67,11 @@ class AddComment extends Component {
           })
         }
         catch(err) {
-          Alert.alert("The comment must have title, subtitle and comment text!");
+          console.log("The comment must have title, subtitle and comment text!");
         }
     }
     else {
-      Alert.alert("Error!");
+      console.log("Error!");
     }
   }
 

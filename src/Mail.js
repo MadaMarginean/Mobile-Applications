@@ -17,7 +17,7 @@ class Mail extends Component{
           name: '',   // Optional: Custom filename for attachment
         }
       }, (error, event) => {
-        Alert.alert(
+        console.log(
           error,
           event,
           [

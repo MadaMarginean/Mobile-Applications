@@ -29,7 +29,7 @@ class CommentList extends Component {
       })
     }
     catch(err) {
-      Alert.alert("Error!");
+      console.log("Error!");
     }
   }
 
@@ -43,7 +43,7 @@ class CommentList extends Component {
         })
       }
       catch(err) {
-        Alert.alert("Error!");
+        console.log("Error!");
       }
     }
   }
