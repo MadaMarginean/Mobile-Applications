@@ -69,7 +69,6 @@ class Profile extends Component {
   }
 
   render() {
-    console.log(this.props.user);
     return (
       <ScrollView /*accessible={true}*/>
         <Text>{this.props.phoneName}</Text>

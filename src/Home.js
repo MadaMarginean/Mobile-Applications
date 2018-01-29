@@ -10,8 +10,11 @@ import {
   Button
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import TimerMixin from 'react-timer-mixin';
 
 import * as firebase from 'firebase';
+
+import Notification from 'react-native-system-notification';
 
 import s5img from './assets/Samsung_Galaxy_S5.png';
 import s6img from './assets/Samsung_Galaxy_S6_S6_Edge_and_S6_Edge_Plus.png';
@@ -46,6 +49,24 @@ class Home extends Component {
   }
 
   componentWillMount() {
+    setTimeout(() => {
+      // Notification.create({ message: 'Testing.' }).then(function(notification) {
+      //   console.log(notification);
+      //   console.log(notification.id);
+      // });
+//       Notification.create({
+//   subject: 'Scheduled Notification',
+//   message: 'This notification will show on every Friday morning at 8:30 AM, starts at 2015/9/9 and end after 10 times.',
+//   sendAt: new Date(2015, 9, 9, 8, 30),
+//   repeatEvery: 'week',
+//   repeatCount: 10
+// });
+  //Notification.addListener('press', function(e) {
+  //   console.log(e);
+  // });
+      console.log("PLM");
+    }, 5000);
+
     let mobilePath = "/Phone";
     let data = firebase.database().ref(mobilePath);
 
